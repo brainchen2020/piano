@@ -5157,7 +5157,8 @@ var loader, canvas = {}, host = "chrome-extension:" === window.location.protocol
             // 
             loader.update(null, "&lt;downloading&gt;<br>" + f);
             Piano.files[m] ? Piano.loadExternalMIDICallback(Piano.files[m]) : null === Piano.files[m] ? "chrome-extension:" === window.location.protocol ? Piano.loadExternalMIDICallback(host + "/audio/" + m) : DOMLoader.script.add({
-                src: "https://galactic.ink/piano/midi-to-json.php?query=" + encodeURIComponent(m)
+                // src: "https://galactic.ink/piano/midi-to-json.php?query=" + encodeURIComponent(m)
+                src: "http://localhost:8000/piano/midi-to-text?query=" + encodeURIComponent(m)
             }) : DOMLoader.script.add({
                 src: "https://midi-to-json.appspot.com/" + g.split("//")[1]
             })
@@ -5236,7 +5237,7 @@ var loader, canvas = {}, host = "chrome-extension:" === window.location.protocol
     Event.add("body", "ready", function() {
         var b = document.createElement("script");
         b.type = "text/javascript";
-        b.src = "https://chrome.google.com/webstore/widget/developer/scripts/widget.js";
+        // b.src = "https://chrome.google.com/webstore/widget/developer/scripts/widget.js"; comment with no error.
         document.head.appendChild(b);
         Event.add(".tools", "mousedown", function(a) {
             MIDI.UI.enableConfigure(!1)
